@@ -1,0 +1,22 @@
+#!/usr/bin/fish
+
+function new -d 'Create a new project file in the home directory.'
+    # get arguments
+    argparse --min-args 1 --max-args 2 'd/date=?' -- $argv
+    or return
+    set _flag_path $argv[1]
+    set dir "$HOME/meine/$_flag_path"
+    set title $(string split '/' $_flag_path)[-1]
+    if set -q 'argv[2]'
+        set _flag_desc $argv[2]
+    end
+    if not set -q '_flag_date'
+        set _flag_date $(date +'%Y-%m-%d')
+    end
+
+    # construct folder
+    if mkdir $dir
+        echo "*$_flag_date*"\n"# $title"\n$_flag_desc > $dir/README.md
+        cd $dir
+    end
+end
