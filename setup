@@ -19,3 +19,7 @@ alias --save ll='ls -hAlF'
 
 # connect to the raspberry pi
 alias --save sshpi="ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null pi@\$(curl -s $DYNDNS_URL)"
+
+# change default shell
+echo 'Enter sudo password for setting fish as default shell:'
+chsh -s (command -s fish)
