@@ -1,0 +1,6 @@
+#!/usr/bin/fish
+
+function hss -d 'Log into hotspotshield and connect.'
+    hotspotshield account signin < ~/.hotspotshield-credentials
+    hotspotshield connect
+end

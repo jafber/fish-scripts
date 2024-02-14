@@ -1,10 +1,11 @@
 #!/usr/bin/fish
 
 function comp -d 'Automatically compile and run a C script.'
-    if not set -q argv[1]
+    if not set -q 'argv[1]'
         exit 1
     end
-    set scriptname $(basename $argv[1] .c)
-    gcc -o $scriptname $argv[1]
-    ./$scriptname
+    set source_name $argv[1]
+    set exe_name "$(basename $argv[1] .c).out"
+    clang -o $exe_name $source_name
+    ./$exe_name $argv[2..]
 end
